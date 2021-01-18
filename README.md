@@ -2,7 +2,6 @@
 Progetto di APPLICAZIONI SOFTWARE E PROGRAMMAZIONE PER DISPOSITIVI MOBILI della Laurea Magistrale in Informatica Applicata dell'Università di Urbino Carlo Bo
 
 **Studente:** Paride Dominici 
-
 **Matricola:** 306075
 
 # Introduzione
