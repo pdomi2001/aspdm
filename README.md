@@ -5,7 +5,7 @@ Progetto di APPLICAZIONI SOFTWARE E PROGRAMMAZIONE PER DISPOSITIVI MOBILI della 
 **Matricola:** 306075
 
 # Introduzione
-Il progeto ha lo scopo di realizzare una applicazione per lo svolgimento di test generici con valutazione automatica del risultato.
+Il progetto ha lo scopo di realizzare una applicazione per lo svolgimento di test generici con valutazione automatica del risultato.
 
 # Casi d'uso
 1. Valutazione autonoma delle capacità dello studente
