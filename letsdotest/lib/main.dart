@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:letsdotest/test_list.dart';
-import 'project.dart';
+import 'package:letsdotest/routes.dart';
 import 'homepage.dart';
 
 void main() {
@@ -12,7 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      initialRoute: RouteGenerator.homePage,
+      onGenerateRoute: RouteGenerator.generateRoute,
+      title: 'LetsDoTests App',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -25,14 +26,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text("Let's do Tests"),
 
-          ),
-          body:
-            MyHomePage(title: 'Flutter Demo Home Page')
-      ),
+      home: MyHomePage(title: "Let's do Tests")
     );
   }
 }

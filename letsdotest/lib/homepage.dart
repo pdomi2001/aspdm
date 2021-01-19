@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'test_list.dart';
+import 'package:letsdotest/project.dart';
+import 'package:letsdotest/routes.dart';
+
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key key, this.title, this.project}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -14,6 +16,7 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
+  final Project project;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -42,10 +45,34 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      drawer: Drawer(
+         child: ListView(
+           children: [
+           ListTile(
+             leading: const Icon(Icons.info),
+             title: const Text("About"),
+             onTap: () {
+               return Navigator.of(context)?.pushNamed(RouteGenerator.aboutPage);
+             }
+           ),
+           ListTile(
+             leading: const Icon(Icons.close),
+             title: const Text("Chiudi Applicazione"),
+             onTap: () {
+                /* ????? */
+             }
+           ),
+      ]
+         ),
+
+      ),
+      endDrawer: Drawer(),
+
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -67,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TestList(),
+            // TestList(),
             Text(
               'You have pushed the button this many times:',
             ),
