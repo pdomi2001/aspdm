@@ -2,19 +2,9 @@
 
 import 'package:flutter/cupertino.dart';
 
-class SingleTest {
-  String _name = "";
+import 'test/singletest.dart';
 
-  SingleTest(String titolo) {
-    _name = titolo;
-  }
 
-  String get name => _name;
-
-  void set name(String valore) {
-    _name = valore;
-  }
-}
 
 class Project extends ChangeNotifier {
   List<SingleTest> _elencoProgetti = [];

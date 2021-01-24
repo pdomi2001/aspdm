@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:letsdotest/routes.dart';
 import 'project.dart';
 import 'package:provider/provider.dart';
 
@@ -18,23 +19,28 @@ class _SelectTestState extends State<SelectTest> {
         padding: const EdgeInsets.all(30),
         color: Colors.blue,
         child: Container(
-          color: Colors.red,
+          color: Colors.white10,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
-                child: Container(
-                    alignment: Alignment.center,
-                    color: Colors.amber,
-                    child: Text("testo 1")
-                ),
+                  flex: 1,
+                  child: Container()),
+              Container(
+                  alignment: Alignment.center,
+                  color: Colors.red,
+                  padding: EdgeInsets.all(20),
+                  //height: 100,
+                  child: Text("Scegliere il test da eseguire")
               ),
               Expanded(
+                flex: 10,
                 child: Container(
                       alignment: Alignment.center,
                       color: Colors.lightGreen,
+                      padding: const EdgeInsets.all(20),
                       child: Consumer<Project>(
                         builder: (context, prj, child) {
                           debugPrint("Consumer");
@@ -42,7 +48,9 @@ class _SelectTestState extends State<SelectTest> {
                             itemCount: prj.getNumTests(),
                             itemBuilder: (context, index) {
                               return ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    return Navigator.of(context)?.pushNamed(RouteGenerator.executeTestPage);
+                                  },
                                   child: Text(prj.getTest(index).name));
                             },
                           );
@@ -51,6 +59,7 @@ class _SelectTestState extends State<SelectTest> {
                 ),
               ),
               // Text("Ci sono ${context.watch<Project>().getNumTests()}"),
+              /*
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Consumer<Project>(
@@ -64,7 +73,12 @@ class _SelectTestState extends State<SelectTest> {
                   onPressed: () {
                     context.watch<Project>().addTest();
                   },
-                  child: Text("Cambia nome"))
+                  child: Text("Cambia nome")),
+
+               */
+              Expanded(
+                  flex: 1,
+                  child: Container()),
             ],
           ),
         ),

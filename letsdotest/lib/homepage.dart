@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:letsdotest/project.dart';
 import 'package:letsdotest/routes.dart';
 
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title, this.project}) : super(key: key);
 
@@ -23,8 +22,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  //int _counter = 0;
 
+  /*
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -35,6 +35,8 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+  */
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,33 +48,28 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       drawer: Drawer(
-         child: ListView(
-           children: [
-           ListTile(
-             leading: const Icon(Icons.info),
-             title: const Text("About"),
-             onTap: () {
-               return Navigator.of(context)?.pushNamed(RouteGenerator.aboutPage);
-             }
-           ),
-           ListTile(
-             leading: const Icon(Icons.close),
-             title: const Text("Chiudi Applicazione"),
-             onTap: () {
+        child: ListView(children: [
+          ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text("About"),
+              onTap: () {
+                return Navigator.of(context)
+                    ?.pushNamed(RouteGenerator.aboutPage);
+              }),
+          ListTile(
+              leading: const Icon(Icons.close),
+              title: const Text("Chiudi Applicazione"),
+              onTap: () {
                 /* ????? */
-             }
-           ),
-      ]
-         ),
-
+              }),
+        ]),
       ),
-     // endDrawer: Drawer(),
+      // endDrawer: Drawer(),
 
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
-
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -94,17 +91,41 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // TestList(),
-            Text(
-              'You have pushed the button this many times:',
+            Container(
+              height: 100,
+              width: 400,
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.green),
+                    ),
+                    onPressed: () {
+                      return Navigator.of(context)
+                          ?.pushNamed(RouteGenerator.selectTestPage);
+                    },
+                    child: Text("Seleziona un test da svolgere autonomamente")),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            ElevatedButton(
-                onPressed: () {return Navigator.of(context)?.pushNamed(RouteGenerator.selectTestPage); },
-                child: Text("Seleziona il test")
+            Container(
+              height: 100,
+              width: 400,
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.orange),
+                    ),
+                    onPressed: () {
+                      /*
+                      return Navigator.of(context)
+                          ?.pushNamed(RouteGenerator.selectTestPage);
+                       */
+                    },
+                    child: Text("Entra in modalità test interattivo")),
+              ),
             )
           ],
         ),
