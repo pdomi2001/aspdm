@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:letsdotest/project.dart';
 import 'package:letsdotest/routes.dart';
+import 'package:provider/provider.dart';
 import 'homepage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ProviderApp());
 }
+
+class ProviderApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+        create: (context) => Project(),
+        child: MyApp()
+
+    );
+  }
+}
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

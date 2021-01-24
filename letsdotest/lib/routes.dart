@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:letsdotest/info/about.dart';
+import 'package:letsdotest/selecttest.dart';
 
 
 import 'homepage.dart';
@@ -11,6 +12,7 @@ class RouteGenerator {
   static const String aboutPage = '/aboutpage';
   static const String helpPage = '/helppage';
   static const String resultPage = '/resultpage';
+  static const String selectTestPage = '/selecttestpage';
 
   RouteGenerator._() {}
 
@@ -23,6 +25,11 @@ class RouteGenerator {
       case aboutPage:
         return MaterialPageRoute(
           builder: (_) => /*const */ AboutPage(),
+
+        );
+      case selectTestPage:
+        return MaterialPageRoute(
+          builder: (_) => /*const */ SelectTest(),
 
         );
     }

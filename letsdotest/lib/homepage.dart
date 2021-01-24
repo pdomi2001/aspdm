@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
          ),
 
       ),
-      endDrawer: Drawer(),
+     // endDrawer: Drawer(),
 
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -102,14 +102,21 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            ElevatedButton(
+                onPressed: () {return Navigator.of(context)?.pushNamed(RouteGenerator.selectTestPage); },
+                child: Text("Seleziona il test")
+            )
           ],
         ),
       ),
+      /*
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+       // This trailing comma makes auto-formatting nicer for build methods.
+       */
     );
   }
 }

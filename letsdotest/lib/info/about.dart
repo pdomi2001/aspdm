@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 class  AboutPage extends StatelessWidget {
@@ -10,11 +8,12 @@ class  AboutPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("About Data dl'applicazione"),
+            Text("About dell'applicazione"),
             ElevatedButton(
               child: Text("Chiudi"),
               onPressed: () {
-                Navigator.pop(context);
+                // Navigator.pushNamed(context, '/');
+                Navigator.popUntil(context, ModalRoute.withName('/'));
               },
             )
           ],

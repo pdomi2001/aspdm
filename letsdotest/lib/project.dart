@@ -1,5 +1,6 @@
 
-import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 
 class SingleTest {
   String _name = "";
@@ -15,23 +16,35 @@ class SingleTest {
   }
 }
 
-class Project {
-  int _numTests = 0;
-
-  List<SingleTest> _elencoProgetti = new List<SingleTest>();
+class Project extends ChangeNotifier {
+  List<SingleTest> _elencoProgetti = [];
 
   Project() {
+    debugPrint("Creazione Project");
+    /* */
     _elencoProgetti.add(SingleTest("Test inglese"));
     _elencoProgetti.add(SingleTest("Test Francese"));
     _elencoProgetti.add(SingleTest("Test Tedesco"));
     _elencoProgetti.add(SingleTest("Test Spagnolo"));
+
+    /* */
+    debugPrint("Fine Creazione Project");
   }
 
   SingleTest getTest(int idx) {
     return _elencoProgetti[idx];
   }
 
+  void setTestName(int idx, String newname) {
+    _elencoProgetti[idx].name = newname;
+    notifyListeners();
+  }
+
   int getNumTests() {
-    return _numTests;
+    return _elencoProgetti.length;
+  }
+
+  void addTest(){
+    _elencoProgetti.add(SingleTest("Test Nuovo"));
   }
 }
