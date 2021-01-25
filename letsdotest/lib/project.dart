@@ -1,12 +1,9 @@
-
-
-import 'package:flutter/cupertino.dart';
-
+import 'package:flutter/material.dart';
 import 'test/singletest.dart';
 
-
-
 class Project extends ChangeNotifier {
+  int _currentSelectedProject = 0;
+
   List<SingleTest> _elencoProgetti = [];
 
   Project() {
@@ -36,5 +33,13 @@ class Project extends ChangeNotifier {
 
   void addTest(){
     _elencoProgetti.add(SingleTest("Test Nuovo"));
+  }
+
+  void setCurrentTestIdx(int idx) {
+    _currentSelectedProject = idx;
+  }
+
+  int getCurrentTestIdx() {
+    return _currentSelectedProject;
   }
 }

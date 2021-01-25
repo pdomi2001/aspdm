@@ -17,9 +17,9 @@ class _SelectTestState extends State<SelectTest> {
       appBar: AppBar(),
       body: Container(
         padding: const EdgeInsets.all(30),
-        color: Colors.blue,
+        color: Colors.black,
         child: Container(
-          color: Colors.white10,
+          color: Colors.white24,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
@@ -30,7 +30,7 @@ class _SelectTestState extends State<SelectTest> {
                   child: Container()),
               Container(
                   alignment: Alignment.center,
-                  color: Colors.red,
+                  color: Colors.white,
                   padding: EdgeInsets.all(20),
                   //height: 100,
                   child: Text("Scegliere il test da eseguire")
@@ -39,7 +39,7 @@ class _SelectTestState extends State<SelectTest> {
                 flex: 10,
                 child: Container(
                       alignment: Alignment.center,
-                      color: Colors.lightGreen,
+                      color: Colors.amber,
                       padding: const EdgeInsets.all(20),
                       child: Consumer<Project>(
                         builder: (context, prj, child) {
@@ -49,6 +49,7 @@ class _SelectTestState extends State<SelectTest> {
                             itemBuilder: (context, index) {
                               return ElevatedButton(
                                   onPressed: () {
+                                    prj.setCurrentTestIdx(index);
                                     return Navigator.of(context)?.pushNamed(RouteGenerator.executeTestPage);
                                   },
                                   child: Text(prj.getTest(index).name));

@@ -21,14 +21,45 @@ class _CompleteTestState extends State<CompleteTest> {
             Container(
               child: Text("Esecuzione test completo"),
             ),
-
             Expanded(
               child: Container(
                 child: SingleTestWidget(),
               ),
             ),
             Container(
-              child: Text("Footer"),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          onPressed: () {},
+                          child: Icon(Icons.arrow_back, size: 32)),
+                    ),
+                  ),
+                  Expanded(
+                      flex: 2,
+                      child: ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            "Consegna test",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                //backgroundColor: Colors.yellow,
+                                color: Colors.yellow),
+                          ))),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          onPressed: () {},
+                          child: Icon(Icons.arrow_forward, size: 32)),
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),
