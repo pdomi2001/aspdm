@@ -22,6 +22,10 @@ class Project extends ChangeNotifier {
     return _elencoProgetti[idx];
   }
 
+  SingleTest getCurrentTest() {
+    return _elencoProgetti[_currentSelectedProject];
+  }
+
   void setTestName(int idx, String newname) {
     _elencoProgetti[idx].name = newname;
     notifyListeners();
