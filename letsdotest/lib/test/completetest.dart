@@ -23,6 +23,7 @@ class _CompleteTestState extends State<CompleteTest> {
             ),
             Expanded(
               child: Container(
+                padding: EdgeInsets.all(8),
                 child: SingleTestWidget(),
               ),
             ),
@@ -54,7 +55,9 @@ class _CompleteTestState extends State<CompleteTest> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                           child: Icon(Icons.arrow_forward, size: 32)),
                     ),
                   ),

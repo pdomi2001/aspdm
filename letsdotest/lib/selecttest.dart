@@ -47,12 +47,18 @@ class _SelectTestState extends State<SelectTest> {
                           return ListView.builder(
                             itemCount: prj.getNumTests(),
                             itemBuilder: (context, index) {
-                              return ElevatedButton(
-                                  onPressed: () {
-                                    prj.setCurrentTestIdx(index);
-                                    return Navigator.of(context)?.pushNamed(RouteGenerator.executeTestPage);
-                                  },
-                                  child: Text(prj.getTest(index).name));
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      prj.setCurrentTestIdx(index);
+                                      return Navigator.of(context)?.pushNamed(RouteGenerator.executeTestPage);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(24.0),
+                                      child: Text(prj.getTest(index).name),
+                                    )),
+                              );
                             },
                           );
                         },

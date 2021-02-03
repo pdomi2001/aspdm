@@ -1,28 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:letsdotest/project.dart';
-import 'package:letsdotest/test/test_element.dart';
 import 'package:provider/provider.dart';
-
-class SingleTest {
-  String _name = "";
-  TestElement contenutoTest;
-
-  SingleTest(String titolo) {
-    _name = titolo;
-    contenutoTest = new TestElement("titolo",
-        "domanda asdf as df asd fa sd fa sd fa sd f asdfasdfasdf asd afs df a sd f  sdfasd fa s df a sdf asdfa");
-    for (int i = 0; i < 40; i++) {
-      contenutoTest.AddRisposta("Risposta ${i + 1}", 0);
-    }
-    contenutoTest.AddRisposta("Risposta ok", 1);
-  }
-
-  String get name => _name;
-
-  void set name(String valore) {
-    _name = valore;
-  }
-}
 
 class SingleTestWidget extends StatefulWidget {
   int livello;
@@ -32,6 +10,7 @@ class SingleTestWidget extends StatefulWidget {
 }
 
 class _SingleTestWidgetState extends State<SingleTestWidget> {
+
   @override
   Widget build(BuildContext context) {
     return Consumer<Project>(
@@ -42,9 +21,18 @@ class _SingleTestWidgetState extends State<SingleTestWidget> {
         return Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(5.0),
               child: Container(
-                  color: Colors.black26,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: Offset(0, 3)),
+                      ]),
+                  // color: Colors.black26,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
@@ -57,13 +45,24 @@ class _SingleTestWidgetState extends State<SingleTestWidget> {
                     ),
                   )),
             ),
+            const Divider(
+              height: 20,
+            ),
             Expanded(
               child: ListView.builder(
                 itemCount: prj.getCurrentTest().contenutoTest.getNumRisposte(),
                 itemBuilder: (context, index) {
                   return Row(
                     children: [
-                      Checkbox(value: false, onChanged: (bool newValue) {}),
+                      Checkbox(
+                          value: prj.getCurrentTestRisposta(index),
+                          onChanged: (bool newValue) {
+                            prj.setCurrentTestRisposta(index, newValue);
+                            // prj.getCurrentTest().SetRisposta(index, newValue);
+                            debugPrint(
+                                "Changed checkbox ${index} to ${newValue}");
+                            // notifyListeners();
+                          }),
                       Text(
                           "${prj.getCurrentTest().contenutoTest.getRisposta(index).risposta}"),
                     ],

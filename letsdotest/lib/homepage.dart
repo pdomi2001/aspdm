@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         return Navigator.of(context)
                             ?.pushNamed(RouteGenerator.selectTestPage);
                       },
-                      child: Text("Seleziona un test da svolgere autonomamente")),
+                      child: const Text("Seleziona un test da svolgere autonomamente")),
                 ),
               ),
               Container(
@@ -134,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ?.pushNamed(RouteGenerator.selectTestPage);
                          */
                       },
-                      child: Text("Entra in modalità test interattivo")),
+                      child: const Text("Entra in modalità test interattivo")),
                 ),
               )
             ],
