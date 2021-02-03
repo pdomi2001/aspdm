@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'singletest.dart';
+import 'package:letsdotest/test/pagedtest.dart';
 
 class CompleteTest extends StatefulWidget {
   @override
@@ -9,6 +9,8 @@ class CompleteTest extends StatefulWidget {
 class _CompleteTestState extends State<CompleteTest> {
   @override
   Widget build(BuildContext context) {
+    PagedTest _testPaged = PagedTest();
+
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -24,7 +26,7 @@ class _CompleteTestState extends State<CompleteTest> {
             Expanded(
               child: Container(
                 padding: EdgeInsets.all(8),
-                child: SingleTestWidget(),
+                child: _testPaged,
               ),
             ),
             Container(
@@ -35,7 +37,13 @@ class _CompleteTestState extends State<CompleteTest> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            debugPrint("Precedente domanda cliccata ${_testPaged.getPageController()}");
+                            _testPaged.getPageController().previousPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.linear,
+                            );
+                          },
                           child: Icon(Icons.arrow_back, size: 32)),
                     ),
                   ),
@@ -56,7 +64,12 @@ class _CompleteTestState extends State<CompleteTest> {
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                           onPressed: () {
+                            debugPrint("Prossima domanda cliccata");
+                            _testPaged.getPageController().nextPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.linear,
 
+                            );
                           },
                           child: Icon(Icons.arrow_forward, size: 32)),
                     ),

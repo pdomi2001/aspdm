@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:letsdotest/project.dart';
 import 'package:letsdotest/routes.dart';
+
+import 'models/project.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title, this.project}) : super(key: key);

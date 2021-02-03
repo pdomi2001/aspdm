@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:letsdotest/project.dart';
 import 'package:provider/provider.dart';
+
+import 'models/project.dart';
 
 class TestList extends StatefulWidget {
   @override

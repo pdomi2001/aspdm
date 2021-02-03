@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:letsdotest/project.dart';
+
 import 'package:letsdotest/routes.dart';
 import 'package:provider/provider.dart';
 import 'homepage.dart';
+import 'models/project.dart';
 
 void main() {
   runApp(ProviderApp());

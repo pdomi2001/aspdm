@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:letsdotest/routes.dart';
-import 'project.dart';
+import 'models/project.dart';
 import 'package:provider/provider.dart';
 
 class SelectTest extends StatefulWidget {

@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:letsdotest/project.dart';
+import 'package:letsdotest/models/project.dart';
 import 'package:provider/provider.dart';
 
 class SingleTestWidget extends StatefulWidget {
-  int livello;
+  final int _pagina;
+
+  SingleTestWidget(this._pagina);
+
+  int getPagina() => _pagina;
 
   @override
   _SingleTestWidgetState createState() => _SingleTestWidgetState();
 }
 
 class _SingleTestWidgetState extends State<SingleTestWidget> {
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context0) {
+    final int pagina = widget.getPagina();
+    debugPrint("Creating pagina ${pagina}");
     return Consumer<Project>(
       builder: (context, prj, child) {
         debugPrint(
-            "Numero risposte: ${prj.getCurrentTest().contenutoTest.getNumRisposte()}");
-        debugPrint("Domanda: ${prj.getCurrentTest().contenutoTest.domanda}");
+            "Numero risposte: ${prj.getCurrentTest().getDomanda(pagina).getContenutoTest().getNumRisposte()}");
+        debugPrint("Domanda: ${prj.getCurrentTest().getDomanda(pagina).getContenutoTest().domanda}");
         return Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.all(2),
+              child: Text("Pagina ${pagina + 1}/ ${prj.getCurrentTest().getNumDomande()}"),
+            ),
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: Container(
@@ -36,7 +45,7 @@ class _SingleTestWidgetState extends State<SingleTestWidget> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "${prj.getCurrentTest().contenutoTest.domanda}",
+                      "${prj.getCurrentTest().getDomanda(pagina).getContenutoTest().domanda}",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -50,21 +59,21 @@ class _SingleTestWidgetState extends State<SingleTestWidget> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: prj.getCurrentTest().contenutoTest.getNumRisposte(),
+                itemCount: prj.getCurrentTest().getDomanda(pagina).getContenutoTest().getNumRisposte(),
                 itemBuilder: (context, index) {
                   return Row(
                     children: [
                       Checkbox(
-                          value: prj.getCurrentTestRisposta(index),
+                          value: prj.getCurrentTestRisposta(index, pagina),
                           onChanged: (bool newValue) {
-                            prj.setCurrentTestRisposta(index, newValue);
+                            prj.setCurrentTestRisposta(index, pagina, newValue);
                             // prj.getCurrentTest().SetRisposta(index, newValue);
                             debugPrint(
                                 "Changed checkbox ${index} to ${newValue}");
                             // notifyListeners();
                           }),
                       Text(
-                          "${prj.getCurrentTest().contenutoTest.getRisposta(index).risposta}"),
+                          "${prj.getCurrentTest().getDomanda(pagina).getContenutoTest().getRisposta(index).risposta}"),
                     ],
                   );
                 },

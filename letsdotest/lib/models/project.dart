@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models/singletest_model.dart';
+import 'singletest_model.dart';
 
 class Project extends ChangeNotifier {
   int _currentSelectedProject = 0;
@@ -47,12 +47,12 @@ class Project extends ChangeNotifier {
     return _currentSelectedProject;
   }
 
-  bool getCurrentTestRisposta(index) {
-    return _elencoProgetti[_currentSelectedProject].GetRisposta(index);
+  bool getCurrentTestRisposta(index, numDomanda) {
+    return getCurrentTest().getDomanda(numDomanda).GetRisposta(index);
   }
 
-  void setCurrentTestRisposta(index, value) {
-    _elencoProgetti[_currentSelectedProject].SetRisposta(index, value);
+  void setCurrentTestRisposta(index, numDomanda, value) {
+    getCurrentTest().getDomanda(numDomanda).SetRisposta(index, value);
     notifyListeners();
   }
 }
