@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'models/project.dart';
 
+// Valutare se serve ancora
+
 class TestList extends StatefulWidget {
   @override
   _TestListState createState() => _TestListState();

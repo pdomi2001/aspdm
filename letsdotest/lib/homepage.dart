@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:letsdotest/models/prj_import.dart';
 import 'package:letsdotest/routes.dart';
+import 'package:provider/provider.dart';
 
 import 'models/project.dart';
 
@@ -38,7 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   */
 
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -47,7 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    debugPrint("screen w:${MediaQuery.of(context)?.size.width} h: ${MediaQuery.of(context)?.size.height}");
+    debugPrint(
+        "screen w:${MediaQuery.of(context)?.size.width} h: ${MediaQuery.of(context)?.size.height}");
     return Scaffold(
       drawer: Drawer(
         child: ListView(children: [
@@ -73,75 +75,89 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("myassets/images/sfondo1.jpg"),
-                fit: MediaQuery.of(context)?.size.width < MediaQuery.of(context)?.size.height ? BoxFit.fitHeight : BoxFit.fitWidth
-              )
-          ),
-          child: Column(
-            // Column is also a layout widget. It takes a list of children and
-            // arranges them vertically. By default, it sizes itself to fit its
-            // children horizontally, and tries to be as tall as its parent.
-            //
-            // Invoke "debug painting" (press "p" in the console, choose the
-            // "Toggle Debug Paint" action from the Flutter Inspector in Android
-            // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-            // to see the wireframe for each widget.
-            //
-            // Column has various properties to control how it sizes itself and
-            // how it positions its children. Here we use mainAxisAlignment to
-            // center the children vertically; the main axis here is the vertical
-            // axis because Columns are vertical (the cross axis would be
-            // horizontal).
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-
-              Container(
-                height: 100,
-                // width: 400,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.green),
+      body: FutureBuilder(
+          future: context.watch<Project>().LoadProjectsFromWeb(),
+          builder: (context, AsyncSnapshot<ProjectImportList> snapshot) {
+            if (snapshot.hasData) {
+              return Center(
+                // Center is a layout widget. It takes a single child and positions it
+                // in the middle of the parent.
+                child: Container(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("myassets/images/sfondo1.jpg"),
+                          fit: MediaQuery.of(context)?.size.width <
+                                  MediaQuery.of(context)?.size.height
+                              ? BoxFit.fitHeight
+                              : BoxFit.fitWidth)),
+                  child: Column(
+                    // Column is also a layout widget. It takes a list of children and
+                    // arranges them vertically. By default, it sizes itself to fit its
+                    // children horizontally, and tries to be as tall as its parent.
+                    //
+                    // Invoke "debug painting" (press "p" in the console, choose the
+                    // "Toggle Debug Paint" action from the Flutter Inspector in Android
+                    // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+                    // to see the wireframe for each widget.
+                    //
+                    // Column has various properties to control how it sizes itself and
+                    // how it positions its children. Here we use mainAxisAlignment to
+                    // center the children vertically; the main axis here is the vertical
+                    // axis because Columns are vertical (the cross axis would be
+                    // horizontal).
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Container(
+                        height: 100,
+                        // width: 400,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.green),
+                              ),
+                              onPressed: () {
+                                return Navigator.of(context)
+                                    ?.pushNamed(RouteGenerator.selectTestPage);
+                              },
+                              child: const Text(
+                                  "Seleziona un test da svolgere autonomamente")),
+                        ),
                       ),
-                      onPressed: () {
-                        return Navigator.of(context)
-                            ?.pushNamed(RouteGenerator.selectTestPage);
-                      },
-                      child: const Text("Seleziona un test da svolgere autonomamente")),
+                      Container(
+                        height: 100,
+                        //width: 400,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.red),
+                              ),
+                              onPressed: () {
+                                /*
+                          return Navigator.of(context)
+                              ?.pushNamed(RouteGenerator.selectTestPage);
+                           */
+                              },
+                              child: const Text(
+                                  "Entra in modalità test interattivo")),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                height: 100,
-                //width: 400,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.red),
-                      ),
-                      onPressed: () {
-                        /*
-                        return Navigator.of(context)
-                            ?.pushNamed(RouteGenerator.selectTestPage);
-                         */
-                      },
-                      child: const Text("Entra in modalità test interattivo")),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
       /*
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,

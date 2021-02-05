@@ -3,11 +3,14 @@ import 'package:letsdotest/models/test_element.dart';
 
 class SingleTest {
   String _name = "";
+  String _description = "";
+  String _filepath = "";
 
   List<SingleTestPage> _domandeTest = [];
 
-  SingleTest(String titolo) {
-    _name = titolo;
+  SingleTest(this._name, this._description, this._filepath) {
+
+
     AddDomanda(SingleTestPage());
     AddDomanda(SingleTestPage());
     AddDomanda(SingleTestPage());
@@ -22,9 +25,19 @@ class SingleTest {
   }
 
   String get name => _name;
+  String get description => _description;
+  String get filepath => _filepath;
 
   void set name(String valore) {
     _name = valore;
+  }
+
+  void set description(String valore) {
+    _description = valore;
+  }
+
+  void set filepath(String valore) {
+    _filepath = valore;
   }
 
   SingleTestPage getDomanda(int index) => _domandeTest[index];
