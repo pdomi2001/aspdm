@@ -1,0 +1,17 @@
+[
+	{
+		"title": "Titolo",
+		"question": "Domanda da fare numero 1 - francese",
+		"answers" : "prova"
+	},
+	{
+		"title": "Titolo",
+		"question": "Domanda da fare numero 2",
+		"answers" : "prova"
+	},
+	{
+		"title": "Titolo",
+		"question": "Domanda da fare numero 3",
+		"answers" : "prova"
+	}
+]
