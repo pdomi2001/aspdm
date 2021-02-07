@@ -2,11 +2,13 @@
 	{
 		"title": "Titolo1",
 		"question": "Domanda da fare numero 1",
-		"answers" : 
-		[
-			{ 	"text": "Risposta 1.6", 
-				"value": "0"
-			}
+		"answers" : [
+			{ "text": "Risposta 1.1", "value": "0"},
+			{ "text": "Risposta 1.2", "value": "0"},
+			{ "text": "Risposta 1.3", "value": "0"},
+			{ "text": "Risposta 1.4", "value": "0"},
+			{ "text": "Risposta 1.5", "value": "1"},
+			{ "text": "Risposta 1.6", "value": "0"}
 		]
 	},
 	{

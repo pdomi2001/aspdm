@@ -78,6 +78,10 @@ class SingleTestPage {
      */
   }
 
+  void AddRispostaToPage(String testorisposta, String valorerisposta) {
+    _contenutoTest.AddRisposta(testorisposta, double.parse(valorerisposta));
+    debugPrint("SingleTestPage:AddRispostaToPage");
+  }
 
   void SetRisposta(index, value) {
     _risposte[index] = value;

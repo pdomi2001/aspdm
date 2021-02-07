@@ -40,12 +40,16 @@ class Project extends ChangeNotifier {
 
     test.ClearTest();
     for (i = 0; i < prjData.elements.length; i++) {
-      test.AddDomanda(SingleTestPage(prjData.elements[i].titolo, prjData.elements[i].question));
+      SingleTestPage s = SingleTestPage(prjData.elements[i].titolo, prjData.elements[i].question);
+      int j;
+      for(j = 0; j < prjData.elements[i].getNumDomande(); j++) {
+        s.AddRispostaToPage(prjData.elements[i].getDomanda(j).testo, prjData.elements[i].getDomanda(j).valore);
+      }
+      test.AddDomanda(s);
       // qui vanno aggiunte le risposte per ogni domanda
     }
     return(prjData);
   }
-
 
   SingleTest getTest(int idx) {
     return _elencoProgetti[idx];
@@ -124,12 +128,12 @@ class Project extends ChangeNotifier {
       debugPrint("LoadProjectFromWeb:json decodificato");
       debugPrint("LoadProjectFromWeb:json content ${jsonProjectElements}");
 
-      final List<ProjectImportElement> projectList = jsonProjectElements.cast<Map<String, dynamic>>().map(
+      final List<ProjectImportElement> projectContent = jsonProjectElements.cast<Map<String, dynamic>>().map(
           (val) => ProjectImportElement.fromJson(val)
       ).toList();
       // notifyListeners();
       debugPrint("LoadProjectFromWeb:Lista convertita");
-      return CaricaDatiProgetto(ProjectImport(projectList));
+      return CaricaDatiProgetto(ProjectImport(projectContent));
 
     } else {
 
