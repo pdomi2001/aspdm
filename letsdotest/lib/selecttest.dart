@@ -25,43 +25,43 @@ class _SelectTestState extends State<SelectTest> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(
-                  flex: 1,
-                  child: Container()),
+              Expanded(flex: 1, child: Container()),
               Container(
                   alignment: Alignment.center,
                   color: Colors.white,
                   padding: EdgeInsets.all(20),
                   //height: 100,
-                  child: Text("Scegliere il test da eseguire")
-              ),
+                  child: Text("Scegliere il test da eseguire")),
               Expanded(
                 flex: 10,
                 child: Container(
-                      alignment: Alignment.center,
-                      color: Colors.amber,
-                      padding: const EdgeInsets.all(20),
-                      child: Consumer<Project>(
-                        builder: (context, prj, child) {
-                          debugPrint("Consumer");
-                          return ListView.builder(
-                            itemCount: prj.getNumTests(),
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      prj.setCurrentTestIdx(index);
-                                      return Navigator.of(context)?.pushNamed(RouteGenerator.executeTestPage);
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(24.0),
-                                      child: Text(prj.getTest(index).name),
-                                    )),
-                              );
-                            },
+                  alignment: Alignment.center,
+                  color: Colors.amber,
+                  padding: const EdgeInsets.all(20),
+                  child: Consumer<Project>(
+                    builder: (context, prj, child) {
+                      debugPrint("Consumer");
+                      return ListView.builder(
+                        itemCount: prj.getNumTests(),
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  prj.setCurrentTestIdx(index);
+                                  return Navigator.of(context)?.pushNamed(
+                                      RouteGenerator.executeTestPage);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(24.0),
+                                  child: Tooltip(
+                                      message: prj.getTest(index).description,
+                                      child: Text(prj.getTest(index).name)),
+                                )),
                           );
                         },
+                      );
+                    },
                   ),
                 ),
               ),
@@ -83,9 +83,7 @@ class _SelectTestState extends State<SelectTest> {
                   child: Text("Cambia nome")),
 
                */
-              Expanded(
-                  flex: 1,
-                  child: Container()),
+              Expanded(flex: 1, child: Container()),
             ],
           ),
         ),

@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: FutureBuilder(
-          future: context.watch<Project>().LoadProjectsFromWeb(),
+          future: context.watch<Project>().LoadProjectListFromWeb(),
           builder: (context, AsyncSnapshot<ProjectImportList> snapshot) {
             if (snapshot.hasData) {
               return Center(

@@ -10,14 +10,16 @@ class SingleTest {
 
   SingleTest(this._name, this._description, this._filepath) {
 
+/*
+    AddDomanda(SingleTestPage());
+    AddDomanda(SingleTestPage());
+    AddDomanda(SingleTestPage());
+    AddDomanda(SingleTestPage());
+    AddDomanda(SingleTestPage());
+    AddDomanda(SingleTestPage());
+    AddDomanda(SingleTestPage());
 
-    AddDomanda(SingleTestPage());
-    AddDomanda(SingleTestPage());
-    AddDomanda(SingleTestPage());
-    AddDomanda(SingleTestPage());
-    AddDomanda(SingleTestPage());
-    AddDomanda(SingleTestPage());
-    AddDomanda(SingleTestPage());
+ */
   }
 
     void AddDomanda(SingleTestPage testPage) {
@@ -44,6 +46,14 @@ class SingleTest {
 
   int getNumDomande() => _domandeTest.length;
 
+  void ClearTest() {
+    _name = "";
+    _description = "";
+    _filepath = "";
+    _domandeTest.clear();
+
+  }
+
 }
 
 class SingleTestPage {
@@ -52,13 +62,20 @@ class SingleTestPage {
   var _risposte = new List.filled(1000, false);
 
 
-  SingleTestPage() {
-    _contenutoTest = new TestElement("titolo",
+  SingleTestPage(String titolo, String descrizione) {
+    _contenutoTest = new TestElement(titolo, descrizione);
+    /*
+      _contenutoTest = new TestElement("titolo",
         "domanda asdf as df asd fa sd fa sd fa sd f asdfasdfasdf asd afs df a sd f  sdfasd fa s df a sdf asdfa");
+
+     */
+    /*
     for (int i = 0; i < 40; i++) {
       _contenutoTest.AddRisposta("Risposta ${i + 1}", 0);
     }
     _contenutoTest.AddRisposta("Risposta ok", 1);
+
+     */
   }
 
 
