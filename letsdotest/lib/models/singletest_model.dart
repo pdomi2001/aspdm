@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:letsdotest/models/test_element.dart';
 
-class SingleTest {
+class SingleTest extends ChangeNotifier {
   String _name = "";
   String _description = "";
   String _filepath = "";
@@ -54,12 +54,32 @@ class SingleTest {
 
   }
 
+  bool getRisposta(index, numDomanda) {
+    return getDomanda(numDomanda).GetRisposta(index);
+  }
+
+  void setRisposta(index, numDomanda, value) {
+    getDomanda(numDomanda).SetRisposta(index, value);
+    debugPrint("Singletest: setRisposta");
+    notifyListeners();
+  }
+/*
+  @override
+  bool operator ==(Object other) {
+    int i;
+    for (i = 0; i < _domandeTest.length; i++) {
+      if (_domandeTest[i] == other[i]);
+    }
+  }
+  */
+
 }
 
 class SingleTestPage {
   TestElement _contenutoTest;
 
-  var _risposte = new List.filled(1000, false);
+  // var _risposte = new List.filled(1000, false);
+  var _risposte = [];
 
 
   SingleTestPage(String titolo, String descrizione) {
@@ -81,6 +101,7 @@ class SingleTestPage {
   void AddRispostaToPage(String testorisposta, String valorerisposta) {
     _contenutoTest.AddRisposta(testorisposta, double.parse(valorerisposta));
     debugPrint("SingleTestPage:AddRispostaToPage");
+    _risposte.add(false);
   }
 
   void SetRisposta(index, value) {

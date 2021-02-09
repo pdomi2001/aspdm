@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:letsdotest/models/project.dart';
+import 'package:letsdotest/models/singletest_model.dart';
 import 'package:provider/provider.dart';
 
 class SingleTestWidget extends StatefulWidget {
@@ -18,16 +19,17 @@ class _SingleTestWidgetState extends State<SingleTestWidget> {
   Widget build(BuildContext context0) {
     final int pagina = widget.getPagina();
     debugPrint("Creating pagina ${pagina}");
-    return Consumer<Project>(
-      builder: (context, prj, child) {
+    return Selector<Project, SingleTest>(
+      selector: (buildContext, _) => context.watch<Project>().getCurrentTest(),
+      builder: (context, currentTest, child) {
         debugPrint(
-            "Numero risposte: ${prj.getCurrentTest().getDomanda(pagina).getContenutoTest().getNumRisposte()}");
-        debugPrint("Domanda: ${prj.getCurrentTest().getDomanda(pagina).getContenutoTest().domanda}");
+            "Numero risposte: ${currentTest.getDomanda(pagina).getContenutoTest().getNumRisposte()}");
+        debugPrint("Domanda: ${currentTest.getDomanda(pagina).getContenutoTest().domanda}");
         return Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(2),
-              child: Text("Pagina ${pagina + 1}/ ${prj.getCurrentTest().getNumDomande()}"),
+              child: Text("Pagina ${pagina + 1}/ ${currentTest.getNumDomande()}"),
             ),
             Padding(
               padding: const EdgeInsets.all(5.0),
@@ -45,7 +47,7 @@ class _SingleTestWidgetState extends State<SingleTestWidget> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "${prj.getCurrentTest().getDomanda(pagina).getContenutoTest().domanda}",
+                      "${currentTest.getDomanda(pagina).getContenutoTest().domanda}",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -59,21 +61,25 @@ class _SingleTestWidgetState extends State<SingleTestWidget> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: prj.getCurrentTest().getDomanda(pagina).getContenutoTest().getNumRisposte(),
+                itemCount: currentTest.getDomanda(pagina).getContenutoTest().getNumRisposte(),
                 itemBuilder: (context, index) {
                   return Row(
                     children: [
                       Checkbox(
-                          value: prj.getCurrentTestRisposta(index, pagina),
+                          value: context.watch<Project>().getCurrentTest().getRisposta(index, pagina),
+                          /* currentTest.getRisposta(index, pagina), */
                           onChanged: (bool newValue) {
-                            prj.setCurrentTestRisposta(index, pagina, newValue);
+                            currentTest.setRisposta(index, pagina, newValue);
                             // prj.getCurrentTest().SetRisposta(index, newValue);
                             debugPrint(
                                 "Changed checkbox ${index} to ${newValue}");
                             // notifyListeners();
+                            setState(() {
+
+                            });
                           }),
                       Text(
-                          "${prj.getCurrentTest().getDomanda(pagina).getContenutoTest().getRisposta(index).risposta}"),
+                          "${currentTest.getDomanda(pagina).getContenutoTest().getRisposta(index).risposta}"),
                     ],
                   );
                 },

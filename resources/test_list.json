@@ -1,7 +1,7 @@
 [
 	{
 		"name": "Inglese",
-		"description": "TEst di inglese",
+		"description": "Test di inglese",
 		"filepath": "https://raw.githubusercontent.com/pdomi2001/aspdm/main/resources/inglese.json"
 	},
 	{
@@ -12,11 +12,11 @@
 	{
 		"name": "Spagnolo",
 		"description": "Test di spagnolo",
-		"filepath": "https://raw.githubusercontent.com/pdomi2001/aspdm/main/resources/inglese.json"
+		"filepath": "https://raw.githubusercontent.com/pdomi2001/aspdm/main/resources/spagnolo.json"
 	},
 	{
 		"name": "Tedesco",
 		"description": "Test di tedesco",
-		"filepath": "https://raw.githubusercontent.com/pdomi2001/aspdm/main/resources/inglese.json"
+		"filepath": "https://raw.githubusercontent.com/pdomi2001/aspdm/main/resources/tedesco.json"
 	}
 ]

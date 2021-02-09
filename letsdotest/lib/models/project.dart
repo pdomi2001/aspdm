@@ -91,42 +91,44 @@ class Project extends ChangeNotifier {
 
   // carico la lista dei progetti dal web
   Future<ProjectImportList> LoadProjectListFromWeb() async {
-    debugPrint("Carico l'elenco dei progetti dal web");
-    final response =  await http.get('https://raw.githubusercontent.com/pdomi2001/aspdm/main/resources/test_list.json',
+    String listTestFile = 'https://raw.githubusercontent.com/pdomi2001/aspdm/main/resources/test_list.json';
+
+    // debugPrint("Carico l'elenco dei progetti dal web");
+    final response =  await http.get(listTestFile,
         headers: { HttpHeaders.acceptHeader: 'application/json'} );
-    debugPrint("GET Project List ${response.statusCode}");
+    // debugPrint("GET Project List ${response.statusCode}");
     if (response.statusCode == 200) {
-      debugPrint("LoadProjectListFromWeb:Inizio la decodifica di json");
+      // debugPrint("LoadProjectListFromWeb:Inizio la decodifica di json");
 
       List<dynamic> jsonProjectList = jsonDecode(response.body);
-      debugPrint("LoadProjectListFromWeb:json decodificato");
+      // debugPrint("LoadProjectListFromWeb:json decodificato");
 
       final List<ProjectListImportElement> projectList = jsonProjectList.cast<Map<String, dynamic>>().map(
           (val) => ProjectListImportElement.fromJson(val)
       ).toList();
       // notifyListeners();
-      debugPrint("Lista convertita");
+      // debugPrint("Lista convertita");
       return CaricaElencoProgetti(ProjectImportList(projectList));
 
     } else {
-
+      throw Exception("Errore di rete caricando: ${listTestFile}");
     }
   }
 
 
   // carico il singolo progetto dal web
   Future<ProjectImport> LoadProjectFromWeb() async {
-    debugPrint("Carico il progetto corrente dal web: ${getCurrentTest().filepath}");
+    // debugPrint("Carico il progetto corrente dal web: ${getCurrentTest().filepath}");
     final response =  await http.get(getCurrentTest().filepath,
         headers: { HttpHeaders.acceptHeader: 'application/json'} );
-    debugPrint("GET Project response: ${response.statusCode}");
+    // debugPrint("GET Project response: ${response.statusCode}");
     if (response.statusCode == 200) {
-      debugPrint("LoadProjectFromWeb:Inizio la decodifica di json");
+      // debugPrint("LoadProjectFromWeb:Inizio la decodifica di json");
 
       // ??????????
       List<dynamic> jsonProjectElements = jsonDecode(response.body);
-      debugPrint("LoadProjectFromWeb:json decodificato");
-      debugPrint("LoadProjectFromWeb:json content ${jsonProjectElements}");
+      // debugPrint("LoadProjectFromWeb:json decodificato");
+      // debugPrint("LoadProjectFromWeb:json content ${jsonProjectElements}");
 
       final List<ProjectImportElement> projectContent = jsonProjectElements.cast<Map<String, dynamic>>().map(
           (val) => ProjectImportElement.fromJson(val)
@@ -136,7 +138,7 @@ class Project extends ChangeNotifier {
       return CaricaDatiProgetto(ProjectImport(projectContent));
 
     } else {
-
+      throw Exception("Errore di rete caricando: ${getCurrentTest().filepath}" );
     }
   }
 }

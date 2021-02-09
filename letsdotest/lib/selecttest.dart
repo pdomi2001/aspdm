@@ -38,10 +38,13 @@ class _SelectTestState extends State<SelectTest> {
                   alignment: Alignment.center,
                   color: Colors.amber,
                   padding: const EdgeInsets.all(20),
-                  child: Consumer<Project>(
-                    builder: (context, prj, child) {
-                      debugPrint("Consumer");
-                      return ListView.builder(
+                  child: Selector<Project, int>(
+                    selector: (builContext,  _) => context.watch<Project>().getNumTests(),
+
+                    builder: (context, numTests, child) {
+                      debugPrint("SelectTest: Selector");
+                        Project prj = context.watch<Project>();
+                        return ListView.builder(
                         itemCount: prj.getNumTests(),
                         itemBuilder: (context, index) {
                           return Padding(
