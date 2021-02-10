@@ -29,6 +29,8 @@ class ProjectListImportElement extends Equatable {
 }
 
 class ProjectImportList {
+  bool loaded = false;
+
   ProjectImportList(this._elements);
 
   List<ProjectListImportElement> _elements = [];
@@ -53,12 +55,12 @@ class ProjectImportElement extends Equatable {
         titolo = json['title'],
         question = json['question'],
         _json_answers = json['answers'] {
-          debugPrint("ProjectImportElement2: answers=${_json_answers}");
+          // debugPrint("ProjectImportElement2: answers=${_json_answers}");
           String _json_answers_string = jsonEncode(_json_answers);
-          debugPrint("ProjectImportElement2: _json_answers_string=${_json_answers_string}");
+          // debugPrint("ProjectImportElement2: _json_answers_string=${_json_answers_string}");
 
           List<dynamic> jsonProjectAnswers = jsonDecode(_json_answers_string);
-          debugPrint("ProjectImportElement: json decodificato ${jsonProjectAnswers}");
+          // debugPrint("ProjectImportElement: json decodificato ${jsonProjectAnswers}");
 
           final List<ProjectImportAnswer> projectContentAnswer = jsonProjectAnswers.cast<Map<String, dynamic>>().map(
                   (val) => ProjectImportAnswer.fromJson(val)

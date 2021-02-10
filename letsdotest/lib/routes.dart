@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:letsdotest/info/about.dart';
 import 'package:letsdotest/selecttest.dart';
 import 'package:letsdotest/test/completetest.dart';
-
+import 'package:letsdotest/test/resultpage.dart';
 
 import 'homepage.dart';
 
@@ -26,17 +26,18 @@ class RouteGenerator {
       case aboutPage:
         return MaterialPageRoute(
           builder: (_) => /*const */ AboutPage(),
-
         );
       case selectTestPage:
         return MaterialPageRoute(
           builder: (_) => /*const */ SelectTest(),
-
         );
       case executeTestPage:
         return MaterialPageRoute(
           builder: (_) => /*const */ CompleteTest(),
-
+        );
+      case resultPage:
+        return MaterialPageRoute(
+            builder: (_) => ResultPage()
         );
     }
   }

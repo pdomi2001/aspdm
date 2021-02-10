@@ -4,6 +4,8 @@ import 'package:letsdotest/models/project.dart';
 import 'package:letsdotest/test/pagedtest.dart';
 import 'package:provider/provider.dart';
 
+import '../routes.dart';
+
 class CompleteTest extends StatefulWidget {
   @override
   _CompleteTestState createState() => _CompleteTestState();
@@ -15,7 +17,7 @@ class _CompleteTestState extends State<CompleteTest> {
     PagedTest _testPaged = PagedTest();
 
     return Scaffold(
-      appBar: AppBar(),
+      // appBar: AppBar(),
       body: FutureBuilder(
           future: context.watch<Project>().LoadProjectFromWeb(),
           builder: (context, AsyncSnapshot<ProjectImport> snapshot) {
@@ -59,7 +61,9 @@ class _CompleteTestState extends State<CompleteTest> {
                           Expanded(
                               flex: 2,
                               child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    return Navigator.of(context)?.pushNamed(RouteGenerator.resultPage);
+                                  },
                                   child: Text(
                                     "Consegna test",
                                     textAlign: TextAlign.center,
