@@ -11,6 +11,10 @@ const AndroidNotificationChannel mainChannel = AndroidNotificationChannel(
   importance: Importance.max
 );
 
+Future _backgroundMessage(RemoteMessage message) {
+  debugPrint('On background message ' + message.toString());
+}
+
 class NotificationManager {
   NotificationManager._();
 
@@ -38,14 +42,27 @@ class NotificationManager {
           mainChannel); // creo il canale delle notifiche
     }
 
+    debugPrint("Gestione Firebase");
     // Gestione notifiche di Firebase
-    Firebase.initializeApp();
+    await Firebase.initializeApp();
+    debugPrint("Firebase inizializzato");
+
     final firebase = FirebaseMessaging.instance;
     await firebase.requestPermission();
 
     final token = await firebase.getToken();
     debugPrint("Il token è " + token);
 
+    //
+    FirebaseMessaging.onMessage.listen((event) {
+      debugPrint("Firebase onMessage ${event.toString()}");
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((event) {
+      debugPrint("Firebase onMessageOpenedApp ${event.toString()}");
+    });
+
+    FirebaseMessaging.onBackgroundMessage( _backgroundMessage);
 
 
     _initialize = true;

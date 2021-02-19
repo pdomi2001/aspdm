@@ -20,7 +20,7 @@ Il test si divide in diverse fasi:
 
 Nella prima fase l'elenco dei test disponibili verrà scaricato dal server che contiene i test e, una volta scelto, verrà scaricato il test desiderato e lanciato.
 Nella fase di esecuzione del test ogni domanda avrà una pagina a se' stante. Ci si potrà muovere tra le pagine facendo swipe destra o sinistra (per avanzare o retrocedere nelle domande). In ogni momento sarà possibile consegnare e far valutare il test cliccando sull'apposito pulsante.
-Premuto il pulsante della valutazione del test si aprirà la finestra con il riepilogo delle risposte esatte o errate.
+Premuto il pulsante della valutazione del test si aprirà la finestra con il conteggio delle risposte esatte o errate.
 
 
 # Fasi dello sviluppo
