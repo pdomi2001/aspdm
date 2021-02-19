@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:letsdotest/models/prj_import.dart';
+import 'package:letsdotest/notificationmanager.dart';
 import 'package:letsdotest/routes.dart';
 import 'package:provider/provider.dart';
 
@@ -55,6 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(children: [
           ListTile(
               leading: const Icon(Icons.info),
+              title: const Text("Test notifica"),
+              onTap: () {
+                NotificationManager().ShowLocalNotification();
+              }),
+          ListTile(
+              leading: const Icon(Icons.info),
               title: const Text("About"),
               onTap: () {
                 return Navigator.of(context)
@@ -64,6 +74,18 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: const Icon(Icons.close),
               title: const Text("Chiudi Applicazione"),
               onTap: () {
+                debugPrint("Operating system: ${Platform.environment}");
+                if (Platform.isWindows ||
+                    Platform.isLinux ||
+                    Platform.isMacOS ||
+                    Platform.isIOS ) {
+                  exit(0);
+                }
+                if (Platform.isAndroid ||
+                    Platform.isFuchsia
+                ) {
+                  SystemNavigator.pop();
+                }
                 /* ????? */
               }),
         ]),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:letsdotest/models/project.dart';
+import 'package:provider/provider.dart';
 
 class ResultPage extends StatelessWidget {
   @override
@@ -17,7 +19,7 @@ class ResultPage extends StatelessWidget {
                 color: Colors.grey,
               ),
               Expanded(
-                  child: Text("Il punteggio ottenuto è 1/5")),
+                  child: Text("Il punteggio ottenuto è ${context.read<Project>().getPunteggioTest()}/${context.read<Project>().getPUnteggioMassimoTest()}")),
               ElevatedButton(onPressed: () {
                 Navigator.popUntil(context, ModalRoute.withName('/'));
               },

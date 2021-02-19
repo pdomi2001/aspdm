@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:letsdotest/models/test_element.dart';
 
@@ -105,12 +106,40 @@ class SingleTestPage {
   }
 
   void SetRisposta(index, value) {
+    // Se può essere una sola tolgo le altre prima di impostarla
+    if (_contenutoTest.tipoRipostaAmmessa == TipoRipostaAmmessa.checkSingle) {
+      for (int i = 0; i < _risposte.length; i++) {
+        _risposte[index] = false;
+      }
+    }
     _risposte[index] = value;
     debugPrint("SetRisposta");
   }
 
   bool GetRisposta(index) {
     return _risposte[index];
+  }
+
+  double GetPunteggio()  {
+    int i;
+    double punteggio = 0;
+
+    for (i = 0; i < _risposte.length; i++) {
+      if (_risposte[i] == true) {
+        punteggio = punteggio + _contenutoTest.getRisposta(i).valoreRisposta;
+      }
+    }
+    return punteggio;
+  }
+
+  double GetPunteggioMassimo()  {
+    int i;
+    double punteggio = 0;
+
+    for (i = 0; i < _risposte.length; i++) {
+      punteggio = punteggio + _contenutoTest.getRisposta(i).valoreRisposta;
+    }
+    return punteggio;
   }
 
   TestElement getContenutoTest() => _contenutoTest;

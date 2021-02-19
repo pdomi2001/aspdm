@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "522586214011",
+    "project_id": "letsdotest-6301c",
+    "storage_bucket": "letsdotest-6301c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522586214011:android:ea1a1652cf080bfa4f5cde",
+        "android_client_info": {
+          "package_name": "com.paridedominici.letsdotest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522586214011-o6haf4gcdoellinpt8suv6mt8etpstal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiN6aurkkSEbZupD9KUr7XAPWJt7zX2mk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522586214011-o6haf4gcdoellinpt8suv6mt8etpstal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

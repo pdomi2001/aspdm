@@ -15,12 +15,16 @@ Il progetto ha lo scopo di realizzare una applicazione per lo svolgimento di tes
 ## Fasi del test
 Il test si divide in diverse fasi:
 1. Scelta del Test da svolgere
-2. Istruzioni del test e inserimento dati studente
-3. Esecuzione del test
-4. Valutazione delle risposte e visualizzazione del risultato
+2. Esecuzione del test
+3. Valutazione delle risposte e visualizzazione del risultato
+
+Nella prima fase l'elenco dei test disponibili verrà scaricato dal server che contiene i test e, una volta scelto, verrà scaricato il test desiderato e lanciato.
+Nella fase di esecuzione del test ogni domanda avrà una pagina a se' stante. Ci si potrà muovere tra le pagine facendo swipe destra o sinistra (per avanzare o retrocedere nelle domande). In ogni momento sarà possibile consegnare e far valutare il test cliccando sull'apposito pulsante.
+Premuto il pulsante della valutazione del test si aprirà la finestra con il riepilogo delle risposte esatte o errate.
+
 
 # Fasi dello sviluppo
 1. Applicazione statica con test hard coded e come unica tipologia di test quello a scelta multipla
-2. Scaricamento dei dati dei test da un server remoto e caricamento dei risultati su un server remoto
+2. Scaricamento dei dati dei test da un server remoto ed eventuale caricamento dei risultati su un server remoto
 3. Aggiunta di altre tipologie di test (fill in the gaps, dropdown, ecc.)
 

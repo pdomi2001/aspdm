@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:letsdotest/notificationmanager.dart';
 
 import 'package:letsdotest/routes.dart';
 import 'package:provider/provider.dart';
@@ -9,12 +10,34 @@ void main() {
   runApp(ProviderApp());
 }
 
+class NotificationWidget extends StatefulWidget {
+  @override
+  _NotificationWidgetState createState() => _NotificationWidgetState();
+}
+
+class _NotificationWidgetState extends State<NotificationWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return MyApp();
+  }
+
+  @override
+  void initState() {
+    initStateAsync();
+  }
+
+  Future initStateAsync() async {
+    await NotificationManager().init();
+  }
+}
+
+
 class ProviderApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (context) => Project(),
-        child: MyApp()
+        child: NotificationWidget()
 
     );
   }

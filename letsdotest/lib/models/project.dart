@@ -89,6 +89,26 @@ class Project extends ChangeNotifier {
     notifyListeners();
   }
 
+  double getPunteggioTest() {
+    int i;
+    double punteggio = 0;
+
+    for (i = 0; i < getCurrentTest().getNumDomande(); i++) {
+      punteggio += getCurrentTest().getDomanda(i).GetPunteggio();
+    }
+    return punteggio;
+  }
+
+  double getPUnteggioMassimoTest() {
+    int i;
+    double punteggio = 0;
+
+    for (i = 0; i < getCurrentTest().getNumDomande(); i++) {
+      punteggio += getCurrentTest().getDomanda(i).GetPunteggioMassimo();
+    }
+    return punteggio;
+  }
+
   // carico la lista dei progetti dal web
   Future<ProjectImportList> LoadProjectListFromWeb() async {
     String listTestFile = 'https://raw.githubusercontent.com/pdomi2001/aspdm/main/resources/test_list.json';
