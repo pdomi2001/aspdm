@@ -1,3 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:io' show Platform; // estraggo solo Platform dal pacchetto
 
@@ -34,6 +37,16 @@ class NotificationManager {
       await android.createNotificationChannel(
           mainChannel); // creo il canale delle notifiche
     }
+
+    // Gestione notifiche di Firebase
+    Firebase.initializeApp();
+    final firebase = FirebaseMessaging.instance;
+    await firebase.requestPermission();
+
+    final token = await firebase.getToken();
+    debugPrint("Il token è " + token);
+
+
 
     _initialize = true;
   }
