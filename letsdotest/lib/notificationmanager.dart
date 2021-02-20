@@ -1,19 +1,13 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'dart:io' show Platform; // estraggo solo Platform dal pacchetto
+import 'include_manager_stub.dart'
+  if (dart.library.js) 'include_manager_firebase_web.dart'
+  if (dart.library.io) 'include_manager_firebase_android.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart'
+//  if (dart.library.js) "include_manager_firebase_web.dart";
+// import 'package:flutter/material.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'dart:io' show Platform; // estraggo solo Platform dal pacchetto
 
-const AndroidNotificationChannel mainChannel = AndroidNotificationChannel(
-    'main_notification_channel',
-    'Notifiche di lets do test',
-    'Notifiche degli eventi di letsdotest',
-  importance: Importance.max
-);
 
-Future _backgroundMessage(RemoteMessage message) {
-  debugPrint('On background message ' + message.toString());
-}
 
 class NotificationManager {
   NotificationManager._();
@@ -29,59 +23,14 @@ class NotificationManager {
       return;
     }
 
-    final local = FlutterLocalNotificationsPlugin();
-    await local.initialize(InitializationSettings(
-        android: AndroidInitializationSettings(
-            '@mipmap/ic_launcher'
-        )
-    ));
-    if (Platform.isAndroid) {
-      final android = local.resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>();
-      await android.createNotificationChannel(
-          mainChannel); // creo il canale delle notifiche
-    }
+    Gestione_Local_Notifications();
 
-    debugPrint("Gestione Firebase");
-    // Gestione notifiche di Firebase
-    await Firebase.initializeApp();
-    debugPrint("Firebase inizializzato");
-
-    final firebase = FirebaseMessaging.instance;
-    await firebase.requestPermission();
-
-    final token = await firebase.getToken();
-    debugPrint("Il token è " + token);
-
-    //
-    FirebaseMessaging.onMessage.listen((event) {
-      debugPrint("Firebase onMessage ${event.toString()}");
-    });
-
-    FirebaseMessaging.onMessageOpenedApp.listen((event) {
-      debugPrint("Firebase onMessageOpenedApp ${event.toString()}");
-    });
-
-    FirebaseMessaging.onBackgroundMessage( _backgroundMessage);
-
+    Gestione_Firebase();
 
     _initialize = true;
   }
 
   Future ShowLocalNotification() async {
-    final local = FlutterLocalNotificationsPlugin();
-    local.show(
-        123,
-        'Titolo notifica',
-        'Corspo del testo da mostrare nella notifica',
-        NotificationDetails(
-            android: AndroidNotificationDetails(
-                mainChannel.id,
-                mainChannel.name,
-                mainChannel.description
-            )
-        )
-    );
+    await ShowLocalNotification_();
   }
-
 }
