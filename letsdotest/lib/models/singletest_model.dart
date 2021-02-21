@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:letsdotest/models/test_element.dart';
 
-class SingleTest extends ChangeNotifier {
+class SingleTest  {
   String _name = "";
   String _description = "";
   String _filepath = "";
@@ -10,6 +10,7 @@ class SingleTest extends ChangeNotifier {
   List<SingleTestPage> _domandeTest = [];
 
   SingleTest(this._name, this._description, this._filepath) {
+    debugPrint("SingleTest: SingleTest ${name},  ${description},  ${filepath}");
 
 /*
     AddDomanda(SingleTestPage());
@@ -32,6 +33,7 @@ class SingleTest extends ChangeNotifier {
   String get filepath => _filepath;
 
   void set name(String valore) {
+    debugPrint("SingleTest: set name ${_name} => ${valore}");
     _name = valore;
   }
 
@@ -48,7 +50,7 @@ class SingleTest extends ChangeNotifier {
   int getNumDomande() => _domandeTest.length;
 
   void ClearTest() {
-    _name = "";
+    _name = "a";
     _description = "";
     _filepath = "";
     _domandeTest.clear();
@@ -62,7 +64,7 @@ class SingleTest extends ChangeNotifier {
   void setRisposta(index, numDomanda, value) {
     getDomanda(numDomanda).SetRisposta(index, value);
     debugPrint("Singletest: setRisposta");
-    notifyListeners();
+    // notifyListeners();
   }
 /*
   @override

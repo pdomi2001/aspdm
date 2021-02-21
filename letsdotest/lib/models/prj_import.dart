@@ -16,6 +16,7 @@ class ProjectListImportElement extends Equatable {
     name = json['name'],
     description = json['description'],
     filepath = json['filepath'] {
+    debugPrint("ProjectListImportElement.fromJson: ${name}");
   }
 
   Map<String, dynamic> toJson() => {

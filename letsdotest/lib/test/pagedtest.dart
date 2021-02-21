@@ -40,7 +40,7 @@ class _PagedTestState extends State<PagedTest> {
   Widget build(BuildContext context) {
 
     return Selector<Project, int>(
-        selector: (buildContext, _) => context.watch<Project>().getCurrentTest().getNumDomande(),
+        selector: (buildContext, prj) => prj.getCurrentTest().getNumDomande(),
         builder: (context, numDomande, child) {
         List<SingleTestWidget> widgetArray = [];
         for (int i = 0; i < numDomande; i++) {

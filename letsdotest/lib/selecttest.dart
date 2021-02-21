@@ -39,27 +39,28 @@ class _SelectTestState extends State<SelectTest> {
                   color: Colors.amber,
                   padding: const EdgeInsets.all(20),
                   child: Selector<Project, int>(
-                    selector: (builContext,  _) => context.watch<Project>().getNumTests(),
+                    selector: (builContext,  prj) => prj.getNumTests(),
 
                     builder: (context, numTests, child) {
                       debugPrint("SelectTest: Selector");
-                        Project prj = context.watch<Project>();
+                        // Project prj = context.watch<Project>();
+                        final project = Provider.of<Project>(context, listen: false);
                         return ListView.builder(
-                        itemCount: prj.getNumTests(),
+                        itemCount: numTests,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ElevatedButton(
                                 onPressed: () {
-                                  prj.setCurrentTestIdx(index);
+                                  project.setCurrentTestIdx(index);
                                   return Navigator.of(context)?.pushNamed(
                                       RouteGenerator.executeTestPage);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.all(24.0),
                                   child: Tooltip(
-                                      message: prj.getTest(index).description,
-                                      child: Text(prj.getTest(index).name)),
+                                      message: project.getTest(index).description,
+                                      child: Text(project.getTestName(index))),
                                 )),
                           );
                         },

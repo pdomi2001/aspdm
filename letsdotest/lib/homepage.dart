@@ -161,6 +161,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                         Colors.red),
                               ),
                               onPressed: () {
+                                // debugPrint(context.read<Project>().getTestName(0));
+                                debugPrint(context.read<Project>().getElencoProgettiPerDebug());
                                 /*
                           return Navigator.of(context)
                               ?.pushNamed(RouteGenerator.selectTestPage);

@@ -23,12 +23,23 @@ class Project extends ChangeNotifier {
     debugPrint("Fine Creazione Project");
   }
 
+  String getElencoProgettiPerDebug() {
+    String s = "";
+    for (int i = 0; i < _elencoProgetti.length; i++) {
+      if (i > 0) s = s + "\n";
+      s = s + i.toString() + " - " + _elencoProgetti[i].hashCode.toString();
+      s = s + " - " + _elencoProgetti[i].name;
+    }
+    return s;
+  }
+
   ProjectImportList CaricaElencoProgetti(ProjectImportList prjList) {
     int i;
 
     _elencoProgetti.clear();
     for (i = 0; i < prjList.elements.length; i++) {
       _elencoProgetti.add(SingleTest(prjList.elements[i].name, prjList.elements[i].description, prjList.elements[i].filepath));
+      debugPrint("CaricaElencoProgetti ${i} ${prjList.elements[i].name}");
     }
     return(prjList);
   }
@@ -38,7 +49,8 @@ class Project extends ChangeNotifier {
 
     int i;
 
-    test.ClearTest();
+    debugPrint("CaricaDatiProgetto");
+    // test.ClearTest();
     for (i = 0; i < prjData.elements.length; i++) {
       SingleTestPage s = SingleTestPage(prjData.elements[i].titolo, prjData.elements[i].question);
       int j;
@@ -61,7 +73,13 @@ class Project extends ChangeNotifier {
 
   void setTestName(int idx, String newname) {
     _elencoProgetti[idx].name = newname;
+    debugPrint("getTestName ${idx} ${_elencoProgetti[idx].name}");
     notifyListeners();
+  }
+
+  String getTestName(int index) {
+    debugPrint("getTestName ${_elencoProgetti[index].name}");
+    return _elencoProgetti[index].name;
   }
 
   int getNumTests() {
@@ -138,7 +156,7 @@ class Project extends ChangeNotifier {
 
   // carico il singolo progetto dal web
   Future<ProjectImport> LoadProjectFromWeb() async {
-    // debugPrint("Carico il progetto corrente dal web: ${getCurrentTest().filepath}");
+    debugPrint("Project LoadProjectFromWeb [${getCurrentTestIdx()}] [${getCurrentTest().filepath}]");
     final response =  await http.get(getCurrentTest().filepath,
         headers: { HttpHeaders.acceptHeader: 'application/json'} );
     // debugPrint("GET Project response: ${response.statusCode}");
