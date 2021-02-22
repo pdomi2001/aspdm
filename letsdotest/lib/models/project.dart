@@ -51,6 +51,7 @@ class Project extends ChangeNotifier {
 
     debugPrint("CaricaDatiProgetto");
     // test.ClearTest();
+    test.ClearTestContents();
     for (i = 0; i < prjData.elements.length; i++) {
       SingleTestPage s = SingleTestPage(prjData.elements[i].titolo, prjData.elements[i].question);
       int j;

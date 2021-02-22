@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:letsdotest/models/test_element.dart';
 
-class SingleTest  {
+class SingleTest extends ChangeNotifier {
   String _name = "";
   String _description = "";
   String _filepath = "";
@@ -53,8 +53,11 @@ class SingleTest  {
     _name = "a";
     _description = "";
     _filepath = "";
-    _domandeTest.clear();
+    ClearTestContents();
+  }
 
+  void ClearTestContents() {
+    _domandeTest.clear();
   }
 
   bool getRisposta(index, numDomanda) {
@@ -64,7 +67,7 @@ class SingleTest  {
   void setRisposta(index, numDomanda, value) {
     getDomanda(numDomanda).SetRisposta(index, value);
     debugPrint("Singletest: setRisposta");
-    // notifyListeners();
+    notifyListeners();
   }
 /*
   @override
@@ -109,9 +112,10 @@ class SingleTestPage {
 
   void SetRisposta(index, value) {
     // Se può essere una sola tolgo le altre prima di impostarla
+    String debugstring = "";
     if (_contenutoTest.tipoRipostaAmmessa == TipoRipostaAmmessa.checkSingle) {
       for (int i = 0; i < _risposte.length; i++) {
-        _risposte[index] = false;
+        _risposte[i] = false;
       }
     }
     _risposte[index] = value;

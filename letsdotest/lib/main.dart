@@ -16,8 +16,12 @@ class NotificationWidget extends StatefulWidget {
 }
 
 class _NotificationWidgetState extends State<NotificationWidget> {
+  BuildContext _context;
+
   @override
   Widget build(BuildContext context) {
+    _context = context;
+    debugPrint("NotificationWidgetState:context = " + _context.toString());
     return MyApp();
   }
 
@@ -27,7 +31,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
   }
 
   Future initStateAsync() async {
-    await NotificationManager().init();
+    await NotificationManager().init(_context);
   }
 }
 

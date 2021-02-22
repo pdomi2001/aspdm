@@ -1,6 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:letsdotest/include_manager_firebase_android.dart';
+
 import 'include_manager_stub.dart'
   if (dart.library.js) 'include_manager_firebase_web.dart'
   if (dart.library.io) 'include_manager_firebase_android.dart';
+import 'models/project.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart'
 //  if (dart.library.js) "include_manager_firebase_web.dart";
 // import 'package:flutter/material.dart';
@@ -10,6 +14,7 @@ import 'include_manager_stub.dart'
 
 
 class NotificationManager {
+  BuildContext _extcontext;
   NotificationManager._();
 
   static final NotificationManager _singleton = NotificationManager._();
@@ -18,10 +23,22 @@ class NotificationManager {
 
   bool _initialize = false;
 
-  Future init() async {
+  setContext(BuildContext extcontext) {
+    _extcontext = extcontext;
+    setContextForNotifications(extcontext);
+  }
+
+  setProject (Project project) {
+    setProjectForNotifications(project);
+  }
+
+  Future init(BuildContext extcontext) async {
     if (_initialize) {
       return;
     }
+    _extcontext = extcontext;
+    debugPrint("Init:NotificationManager");
+    debugPrint(_extcontext.toString());
 
     Gestione_Local_Notifications();
 

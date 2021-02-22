@@ -24,13 +24,17 @@ class MyHomePage extends StatefulWidget {
   final String title;
   final Project project;
 
+  Project get myproject => project;
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // final Project project;
   //int _counter = 0;
 
+  //_MyHomePageState(this.project);
   /*
   void _incrementCounter() {
     setState(() {
@@ -54,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     debugPrint(
         "screen w:${MediaQuery.of(context)?.size.width} h: ${MediaQuery.of(context)?.size.height}");
+    NotificationManager().setContext(context);
     return Scaffold(
       drawer: Drawer(
         child: ListView(children: [
@@ -101,6 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
           future: context.read<Project>().LoadProjectListFromWeb(),
           builder: (context, AsyncSnapshot<ProjectImportList> snapshot) {
             if (snapshot.hasData) {
+              NotificationManager().setProject(context.read<Project>());
               return Center(
                 // Center is a layout widget. It takes a single child and positions it
                 // in the middle of the parent.
@@ -162,7 +168,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               onPressed: () {
                                 // debugPrint(context.read<Project>().getTestName(0));
-                                debugPrint(context.read<Project>().getElencoProgettiPerDebug());
+                                // debugPrint(context.read<Project>().getElencoProgettiPerDebug());
+                                //context.read<Project>().setCurrentTestIdx(0);
+                                return Navigator.of(context)?.pushNamed(
+                                    RouteGenerator.waitForTestPage);
                                 /*
                           return Navigator.of(context)
                               ?.pushNamed(RouteGenerator.selectTestPage);

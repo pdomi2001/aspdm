@@ -3,6 +3,7 @@ import 'package:letsdotest/info/about.dart';
 import 'package:letsdotest/selecttest.dart';
 import 'package:letsdotest/test/completetest.dart';
 import 'package:letsdotest/test/resultpage.dart';
+import 'package:letsdotest/waitfortest.dart';
 
 import 'homepage.dart';
 
@@ -13,6 +14,7 @@ class RouteGenerator {
   static const String helpPage = '/helppage';
   static const String resultPage = '/resultpage';
   static const String selectTestPage = '/selecttestpage';
+  static const String waitForTestPage = '/waitfortestpage';
   static const String executeTestPage = '/executetestpage';
 
   RouteGenerator._() {}
@@ -34,6 +36,10 @@ class RouteGenerator {
       case executeTestPage:
         return MaterialPageRoute(
           builder: (_) => /*const */ CompleteTest(),
+        );
+      case waitForTestPage:
+        return MaterialPageRoute(
+          builder: (_) => /*const */ WaitForTest(),
         );
       case resultPage:
         return MaterialPageRoute(
