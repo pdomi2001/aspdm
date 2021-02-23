@@ -79,20 +79,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ListTile(
               leading: const Icon(Icons.close),
               title: const Text("Chiudi Applicazione"),
+              enabled: kIsWeb ? false : true,
               onTap: () {
                 if (kIsWeb) {
                   debugPrint("Web");
-                  return AlertDialog(
-                    title: Text("AlertDialog"),
-                    content: Text("Would you like to continue learning how to use Flutter alerts?"),
-                    actions: [
-                      ElevatedButton(
-                        child: Text("Continue"),
-                        onPressed:  () {},
-                      )
-                    ],
-                  );
-
                 } else {
                   // debugPrint("Operating system: ${Platform.environment.toString()}");
                   if (Platform.isWindows ||
