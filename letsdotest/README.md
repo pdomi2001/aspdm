@@ -77,8 +77,15 @@ differente in base al sistema di destinazione come ad esempio l'utilizzo della i
 
     if (dart.library.js)
 per caricare dinamicamente le librerie web o 
+
     if (dart.library.io)
-per caricare le librerie per android nel file notificationmanager.dart.
+per caricare le librerie per android nel file [notificationmanager.dart](lib/notificationmanager.dart).
+
+Nel drawer inoltre è stata aggiunta la possibilità di chiudere l'applicazione
+
+![immagine del drawer](docs/img/drawer.png)
+
+
 
 ## Gestione dell'orientamento 
 Si è cercato, il più possibile, di fare in modo che l'applicazione funzionasse correttamente sia in 
