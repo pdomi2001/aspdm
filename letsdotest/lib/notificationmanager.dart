@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:letsdotest/include_manager_firebase_android.dart';
-
 import 'include_manager_stub.dart'
-  if (dart.library.js) 'include_manager_firebase_web.dart'
-  if (dart.library.io) 'include_manager_firebase_android.dart';
+    if (dart.library.html) 'include_manager_firebase_web.dart'
+    if (dart.library.io) 'include_manager_firebase_android.dart';
+
+import 'package:flutter/material.dart';
 import 'models/project.dart';
+
 // import 'package:firebase_messaging/firebase_messaging.dart'
 //  if (dart.library.js) "include_manager_firebase_web.dart";
 // import 'package:flutter/material.dart';

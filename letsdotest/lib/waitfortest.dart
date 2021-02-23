@@ -17,7 +17,19 @@ class _WaitForTestState extends State<WaitForTest> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("In attesa che venga attivato il test dall'insegnante...")
+            Expanded(
+                flex: 3,
+                child: Center(child: Text("In attesa che venga attivato il test dall'insegnante..."))),
+            Expanded(
+              flex: 1,
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                  },
+                  child: Text("Torna indietro"),),
+              ),
+            )
           ],
         ),
       ),

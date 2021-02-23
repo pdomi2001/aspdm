@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:letsdotest/models/prj_import.dart';
@@ -79,17 +80,35 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: const Icon(Icons.close),
               title: const Text("Chiudi Applicazione"),
               onTap: () {
-                debugPrint("Operating system: ${Platform.environment}");
-                if (Platform.isWindows ||
-                    Platform.isLinux ||
-                    Platform.isMacOS ||
-                    Platform.isIOS ) {
-                  exit(0);
-                }
-                if (Platform.isAndroid ||
-                    Platform.isFuchsia
-                ) {
-                  SystemNavigator.pop();
+                if (kIsWeb) {
+                  debugPrint("Web");
+                  return AlertDialog(
+                    title: Text("AlertDialog"),
+                    content: Text("Would you like to continue learning how to use Flutter alerts?"),
+                    actions: [
+                      ElevatedButton(
+                        child: Text("Continue"),
+                        onPressed:  () {},
+                      )
+                    ],
+                  );
+
+                } else {
+                  // debugPrint("Operating system: ${Platform.environment.toString()}");
+                  if (Platform.isWindows ||
+                      Platform.isLinux ||
+                      Platform.isMacOS ||
+                      Platform.isIOS) {
+                    debugPrint("Win/Linux/Macos/IOS");
+                    exit(0);
+                  } else {
+                    if (Platform.isAndroid ||
+                        Platform.isFuchsia
+                    ) {
+                      debugPrint("android/fuchsia");
+                      SystemNavigator.pop();
+                    }
+                  }
                 }
                 /* ????? */
               }),
