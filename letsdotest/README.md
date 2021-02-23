@@ -59,6 +59,59 @@ Il test verrà valutato e sarà mostrato un riepilogo dei punti ottenuti sul mas
 ottenibili.
 
 # Funzioni aggiuntive
+L'applicazione è in grado di generare eventuali avvisi da mostrare 
+
+L'appicazione è anche in grado, come abbiamo detto, di ricevere indicazioni sul test che deve
+essere fatto, mediante una notifica Firebase.
+
+La notifica può essere generata usando il link del [backend](http://www.wesic.it/aspdm/index.php)
+
+Il sorgente del backend, ripulito dai codici privati della piattaforma è visibile qui: 
+[Sorgente del backend](docs/backend/index.php)
+
+# Note di realizzazione
+## Sviluppo multipiattaforma
+L'applicazione è stata sviluppata in modo che possa essere compilata sia in modalità android che 
+in modalità web. Sono stati utilizzati diversi accorgimenti in modo da avere una compilazione
+differente in base al sistema di destinazione come ad esempio l'utilizzo della istruzione 
+*if (dart.library.js)* per caricare dinamicamente le librerie web o *if (dart.library.io)* per 
+caricare le librerie per android nel file notificationmanager.dart.
+
+## Gestione dell'orientamento 
+Si è cercato, il più possibile, di fare in modo che l'applicazione funzionasse correttamente sia in 
+portrait che in landscape adattando, ad esempio, l'immagine di sfondo della schermata inziale a seconda del verso.
 
 
-#
+
+
+# Librerie utilizzate
+
+    provider: ^4.3.2
+    
+Il package **provider** ci consente di passare le notifiche tra i vari widget dell'applicazione.
+Nello specifico di accedere ai dati del progetto e dei test dalle varie pagine.
+
+    http: ^0.12.2
+    
+Questo package ci serve per poter scaricare i file json con l'elenco dei test disponibili e il 
+contenuto del test.
+
+    equatable: ^1.2.5
+
+Questa libreria ci aiuta nella gestione dell'import dei dati dai file json.
+
+    flutter_local_notifications: ^3.0.1
+    
+Questa libreria ci consente di poter segnalare all'utente, tramite una notifica, eventuali
+necessità dell'applicazione.
+
+    firebase_core: ^0.7.0
+    
+Questa è la libreria base per poter utilizzare google firebase
+
+    firebase_messaging:  "^8.0.0-dev.15"
+    
+Questa libreria ci permette di mandare dal backend messaggi alla nostra applicazione.
+Se si compila l'applicazione in modalità web. Questa riga va commentata e va eseguito nuovamente **pub get** dato che non 
+ha una gestione delle notifiche per il web. 
+
