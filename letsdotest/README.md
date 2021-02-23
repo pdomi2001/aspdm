@@ -1,5 +1,6 @@
 # ASPDM
-![app logo](docs/img/logo_base_big.png "Logo")
+| ![app logo](docs/img/logo_base_big.png "Logo") |
+
 Progetto di APPLICAZIONI SOFTWARE E PROGRAMMAZIONE PER DISPOSITIVI MOBILI della Laurea Magistrale in Informatica Applicata dell'Università di Urbino Carlo Bo
 
 **Studente:** Paride Dominici 
