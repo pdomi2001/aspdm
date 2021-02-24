@@ -46,7 +46,7 @@ ritiene esatta cliccando sul box a fianco della risposta.
 
 ![esecuzione test](docs/img/esecuzione_test.gif "Esecuzione del test")
 
-I vari test sono contenuti in diversi file .json. Quelli u cui sono state fatte le prove sono i seguenti:
+I vari test sono contenuti in diversi file .json. Quelli su cui sono state fatte le prove sono i seguenti:
 
 * [Test di Inglese](https://raw.githubusercontent.com/pdomi2001/aspdm/main/resources/inglese.json)
 * [Test di Francese](https://raw.githubusercontent.com/pdomi2001/aspdm/main/resources/francese.json)
