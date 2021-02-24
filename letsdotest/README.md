@@ -75,13 +75,15 @@ L'applicazione è stata sviluppata in modo che possa essere compilata sia in mod
 in modalità web. Sono stati utilizzati diversi accorgimenti in modo da avere una compilazione
 differente in base al sistema di destinazione come ad esempio l'utilizzo della istruzione 
 
-    if (dart.library.js)
+    if (dart.library.html)
 per caricare dinamicamente le librerie web o 
 
     if (dart.library.io)
 per caricare le librerie per android nel file [notificationmanager.dart](lib/notificationmanager.dart).
 
-Nel drawer inoltre è stata aggiunta la possibilità di chiudere l'applicazione
+Nel drawer inoltre è stata aggiunta la possibilità di chiudere l'applicazione.
+In questo caso per identificare la modalità web (che non supporta la chiusura dell'applicazione) non 
+era possibile utilizzare **Platform.isWindows** o similari ma abbiamo dovuto usare **kIsWeb**.
 
 ![immagine del drawer](docs/img/drawer.png)
 
